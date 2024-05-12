@@ -10,22 +10,6 @@ class CartController extends BaseController
   function __construct()
   {
     $this->folder = 'pages';
-
-    // Khởi tạo biến $data
-    $this->data = array(
-        'css_files' => array(
-            './assets/css/header.css',
-            './assets/css/footer.css',
-            './assets/css/cart.css',
-            './assets/icon/themify-icons/themify-icons.css',
-            'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css',
-            'https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css'
-        ),
-        'js_files' => array(
-            './assets/JavaScript/header.js',
-            'https://code.jquery.com/jquery-3.6.0.min.js'
-        )
-    );
   }
   
   public function cart()
@@ -34,16 +18,17 @@ class CartController extends BaseController
     $style = style::getStyleProduct(); // Lấy danh sách các style  
     $dataStyle = array('style' => $style);
 
-    $this->data = array_merge($this->data, array('dataStyle' => $dataStyle));
-    $this->render('cart', $this->data , null); // Thay đổi tên view
+    $data = array('dataStyle' => $dataStyle);
+    $this->render('cart', $data , null); // Thay đổi tên view
   }
 
   public function addCart(){
     $idProduct = isset($_GET['idProduct']) ? $_GET['idProduct'] : null;
     $idStyle = isset($_GET['idStyle']) ? $_GET['idStyle'] : null ; 
+    $quantity = isset($_GET['quantity']) ? $_GET['quantity'] : 1;
     
     $cart = unserialize($_SESSION['cart']);
-    $cart = cart::addCart($idProduct,$cart);
+    $cart = cart::addCart($idProduct,$cart,$quantity);
 
     $totalCart = $cart['totalCart'];
     $totalCart->setTotalPrice(cart::getTotalPriceCart($cart));

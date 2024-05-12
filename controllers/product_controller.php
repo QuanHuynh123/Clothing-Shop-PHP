@@ -37,6 +37,7 @@ class ProductController extends BaseController
 
   public function error()
   {
+    $data = null;
     $this->render('error', null , null);
   }
 

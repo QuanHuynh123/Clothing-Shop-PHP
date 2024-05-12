@@ -16,39 +16,33 @@ class AdminController extends BaseController
   function __construct()
   {
     $this->folder = 'pages';
-
-    // Khởi tạo biến $data
-    $this->data = array(
-      'css_files' => array(
-          './assets/css/admin.css',
-          './assets/css/edit.css',
-          './assets/css/bill.css',
-          './assets/css/billDetail.css',
-          './assets/css/sweetalert2.min.css',
-          './assets/icon/themify-icons/themify-icons.css',
-          'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css',
-          'https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css'
-      ),
-      'js_files' => array(
-          './assets/JavaScript/sweetalert2.min.js',
-          'https://code.jquery.com/jquery-3.6.0.min.js',
-          'https://cdn.jsdelivr.net/npm/chart.js',   
-      ));
   }
   
   public function admin()
   {   
     if (!isset($_SESSION['user_id']) && $_SESSION['role']->getIdRole() == 2) {
-        header("Location: http://localhost:8008/PHP/index.php?controller=login&action=login");
-      exit; 
-    }
+      header("Location: http://localhost:8008/PHP/index.php?controller=login&action=login");
+    exit; 
+  }
 
-    $product = product::getAllProduct();
-    $dataAllProduct = array('product' => $product);
-    
-    $layout = 'admin'; // Đặt layout là 'admin'
-    $this->data = array_merge($this->data, array('dataAllProduct'=>$dataAllProduct));
-    $this->render('admin', $this->data,$layout); 
+    if(isset($_GET["title"]) && isset($_GET["oder"])){
+      $title = $_GET["title"];
+      $oder = $_GET["oder"];
+      $product = product::getODERAllProduct($title,$oder);
+      $dataAllProduct = array('product' => $product);
+      $data = array( 'dataAllProduct'=>$dataAllProduct);
+
+      $layout = 'admin'; // Đặt layout là 'admin'
+      $this->render('admin', $data,$layout); 
+    }
+    else{
+      $product = product::getAllProduct();
+      $dataAllProduct = array('product' => $product);
+      
+      $data = array('dataAllProduct'=>$dataAllProduct);
+      $layout = 'admin'; // Đặt layout là 'admin'
+      $this->render('admin', $data,$layout); 
+    }
   }
 
   public function update()
@@ -69,9 +63,14 @@ class AdminController extends BaseController
 
     $product = product::findByIdProduct($idProduct);
 
-    $this->data = array_merge($this->data, array('dataCategory' => $dataCategory,'dataStyle' => $dataStyle,'product'=>$product,'idProduct' => $idProduct));
+    $data = array(
+      'dataCategory' => $dataCategory,
+      'dataStyle' => $dataStyle,
+      'product'=>$product,
+      'idProduct' => $idProduct
+    );
     $layout = 'admin';
-    $this->render('edit', $this->data , $layout); 
+    $this->render('edit', $data , $layout); 
   }
 
 public function add()
@@ -87,9 +86,12 @@ public function add()
     $style = style::getStyleProduct(); 
     $dataStyle = array('style' => $style);
 
-    $this->data = array_merge($this->data, array('dataCategory' => $dataCategory,'dataStyle' => $dataStyle));
+    $data = array(
+      'dataCategory' => $dataCategory,
+      'dataStyle' => $dataStyle,
+    );
     $layout = 'admin';
-    $this->render('edit', $this->data , $layout); 
+    $this->render('edit', $data , $layout); 
   } 
 
   public function addProduct()
@@ -170,7 +172,8 @@ public function dashBoard()
     exit; 
   }
   $layout = 'admin';
-  $this->render('dashBoard', $this->data,$layout); 
+  $data= array();
+  $this->render('dashBoard', $data,$layout); 
 }
 
 public function billAdminPage()
@@ -184,8 +187,10 @@ public function billAdminPage()
   $dataBill = array('dataBill' => $bill);
   
   $layout = 'admin'; // Đặt layout là 'admin'
-  $this->data = array_merge($this->data, array('dataBill'=>$dataBill));
-  $this->render('bill', $this->data,$layout); 
+  $data = array(
+    'dataBill'=>$dataBill
+  );
+  $this->render('bill', $data,$layout); 
 }
 
 public function billDetailAdminPage()
@@ -200,8 +205,10 @@ public function billDetailAdminPage()
   $dataBillDetail = array('dataBillDetail' => $billDetail);
   
   $layout = 'admin'; // Đặt layout là 'admin'
-  $this->data = array_merge($this->data, array('dataBillDetail'=>$dataBillDetail));
-  $this->render('billDetail', $this->data,$layout); 
+  $data = array(
+    'dataBillDetail'=>$dataBillDetail
+  );
+  $this->render('billDetail', $data,$layout); 
 }
 
 public function confirmBill()
@@ -239,9 +246,11 @@ public function user()
   $user = login::getFullUser();
   $dataUser = array('dataUser' => $user);
 
-  $this->data = array_merge($this->data, array('dataUser'=>$dataUser));
+  $data = array(
+    'dataUser'=>$dataUser
+  );
   $layout = 'admin';
-  $this->render('user', $this->data , $layout); 
+  $this->render('user', $data , $layout); 
 }
 
 public function updateRoleUser()

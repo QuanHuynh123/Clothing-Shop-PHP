@@ -2,7 +2,6 @@
     position: relative;
     background: rgba(0, 0, 0, 0.86);
     text-align: center;
-    margin-top: 94px;
     display: flex;
     flex-direction: column;
 }
@@ -43,8 +42,9 @@ a {
 
 #title_sale{
     font-family: Roboto;
-    font-size: 35px;
+    font-size: 30px;
     font-weight: 500;
+    margin-bottom: 20px;
 }
 
 #sub_sale{

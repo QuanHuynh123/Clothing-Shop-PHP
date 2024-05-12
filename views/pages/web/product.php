@@ -1,10 +1,8 @@
-    <link rel="stylesheet"  href="./assets/css/header.css">
-    <link rel="stylesheet"  href="./assets/css/product.css">
-    <link rel="stylesheet"  href="./assets/css/footer.css">
-    <link rel="stylesheet"  href="./assets/icon/themify-icons/themify-icons.css">
-    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+<link rel="stylesheet"  href="./assets/css/product.css">
+<link rel="stylesheet"  href="./assets/icon/themify-icons/themify-icons.css">
+<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
-            <div id="content_product">
+<div id="content_product">
                 <div id="div_detail_product">
                     <div id="div_detail_product_left">
                         <div id="img_detail_product" style="background-image: url(./assets/product/<?php echo $detailProduct->getImage(); ?>"></div>
@@ -45,57 +43,92 @@
                             </div>
                         </div>
                         <div id="quantity_product">
-                            <h3 id="quantity">Số lượng :1</h3> 
-                            <button class="up_quantity"><i class="fa-solid fa-chevron-up"></i></button>
-                            <button class="down_quantity"><i class="fa-solid fa-chevron-down"></i></button>
+                            <h3 id="quantity">Số lượng:</h3>
+                            <input type="number" id="quantity_input" min="1" value="1">
                         </div>
                         <div id="btn">
-                            <a href="http://localhost:8008/PHP/index.php?controller=cart&action=addCart&idProduct=<?php echo $detailProduct->getIdProduct();?>&idStyle=<?php echo $detailProduct->getIdStyle()?>"><button id="btn_add_cart">Thêm vào giỏ <i class="fa-solid fa-cart-shopping"></i></button></a>
+                            <button id="btn_add_cart">Thêm vào giỏ <i class="fa-solid fa-cart-shopping"></i></button>
                             <button id="btn_buy">Mua ngay</button>
                         </div>
-                    </div>
-                </div>
-   
-                <h1 id="related_product">Sản phẩm liên quan</h1>
-                
-                <div class="product-list-container"> 
-                <button class="prev-button"><i class="fa-solid fa-angles-left"></i></button>
 
-                <ul id="list_product">
-                    <?php $index = 0; ?>
-                    <?php foreach ($dataRelatedProduct['relatedProduct'] as $product): ?>
-                        <?php if ($index < 10): ?>
-                            <li class="product">
-                            <a href="http://localhost:8008/PHP/index.php?controller=product&action=product&idProduct=<?php echo $product->getIdProduct(); ?>&idStyle=<?php echo $product->getIdStyle();?>">
-                                    <div class="img_product" style="background-image: url(./assets/product/<?php echo $product->getImage(); ?>"></div>
-                            </a>
-                                    <div class="infor_product">
-                                        <a class="name_product"><?php echo $product->getNameProduct(); ?></a>
-                                        <div class="div_price">
-                                            <a class="price"><?php echo $product->getPrice(); ?></a>
-                                            <a class="old_price"><?php echo $product->getOldPrice(); ?></a>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                        <?php endif; ?>
-                        <?php $index++; ?>
-                    <?php endforeach; ?>
-                </ul>
+    <script>
+        document.getElementById("btn_add_cart").addEventListener("click", function(event) {
+        event.preventDefault();
+        var quantity = document.getElementById("quantity_input").value; // Lấy giá trị số lượng từ ô nhập liệu
+        var idProduct = "<?php echo $detailProduct->getIdProduct();?>";
+        var idStyle = "<?php echo $detailProduct->getIdStyle();?>";
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "http://localhost:8008/PHP/index.php?controller=cart&action=addCart&idProduct=" + idProduct + "&idStyle=" + idStyle + "&quantity=" + quantity, true);
+        xhr.onload = function () {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                // Xử lý thành công khi thêm sản phẩm vào giỏ hàng
+                alert('Sản phẩm đã được thêm vào giỏ hàng!');
+            } else {
+                console.error('Request failed with status', xhr.status);
+            }
+        };
+        xhr.send();
+    });
+
+    document.getElementById("btn_buy").addEventListener("click", function(event) {
+        event.preventDefault();
+        var quantity = document.getElementById("quantity_input").value; // Lấy giá trị số lượng từ ô nhập liệu
+        var idProduct = "<?php echo $detailProduct->getIdProduct();?>";
+        var idStyle = "<?php echo $detailProduct->getIdStyle();?>";
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "http://localhost:8008/PHP/index.php?controller=cart&action=addCart&idProduct=" + idProduct + "&idStyle=" + idStyle + "&quantity=" + quantity, true);
+        xhr.onload = function () {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                window.location.href = "http://localhost:8008/PHP/index.php?controller=cart&action=cart";
+            } else {
+                console.error('Request failed with status', xhr.status);
+            }
+        };
+        xhr.send();
+    });
+</script>
+
+
+    </div>
+</div>
+   
+    <h1 id="related_product">Sản phẩm liên quan</h1>
+    
+    <div class="product-list-container"> 
+    <button class="prev-button"><i class="fa-solid fa-angles-left"></i></button>
+
+    <ul id="list_product">
+        <?php $index = 0; ?>
+        <?php foreach ($dataRelatedProduct['relatedProduct'] as $product): ?>
+            <?php if ($index < 10): ?>
+                <li class="product">
+                <a href="http://localhost:8008/PHP/index.php?controller=product&action=product&idProduct=<?php echo $product->getIdProduct(); ?>&idStyle=<?php echo $product->getIdStyle();?>">
+                        <div class="img_product" style="background-image: url(./assets/product/<?php echo $product->getImage(); ?>"></div>
+                </a>
+                        <div class="infor_product">
+                            <a class="name_product"><?php echo $product->getNameProduct(); ?></a>
+                            <div class="div_price">
+                                <a class="price"><?php echo $product->getPrice(); ?></a>
+                                <a class="old_price"><?php echo $product->getOldPrice(); ?></a>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            <?php endif; ?>
+            <?php $index++; ?>
+        <?php endforeach; ?>
+    </ul>
        
 
-                <button class="next-button"><i class="fa-solid fa-angles-right"></i></button>
-               </div>
-
-            </div>
-
-            <script src="./assets/JavaScript/header.js"></script>
-            <script src="./assets/JavaScript/slideProduct.js"></script>
-            <script>
-                <?php
-                    // Hiển thị thông báo nếu có
-                    if (isset($_GET['message'])) {
-                        echo 'alert("Thêm thành công");';
-                    } 
-                ?>
-            </script>
+    <button class="next-button"><i class="fa-solid fa-angles-right"></i></button>
+    </div>
+</div>
+    <script src="./assets/JavaScript/slideProduct.js"></script>
+    <script>
+        <?php
+            // Hiển thị thông báo nếu có
+            if (isset($_GET['message'])) {
+                echo 'alert("Thêm thành công");';
+            } 
+        ?>
+    </script>

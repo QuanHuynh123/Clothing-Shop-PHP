@@ -1,16 +1,44 @@
-	<link rel="stylesheet"  href="./assets/css/header.css">
-    <link rel="stylesheet"  href="./assets/css/viewAll.css">
-	<link rel="stylesheet"  href="./assets/css/footer.css">
-	<link rel="stylesheet"  href="./assets/css/sale.css">
-    <link rel="stylesheet"  href="./assets/icon/themify-icons/themify-icons.css">
-    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-
+<link rel="stylesheet"  href="./assets/css/viewAll.css">
+<link rel="stylesheet"  href="./assets/css/sale.css">
+<link rel="stylesheet"  href="./assets/icon/themify-icons/themify-icons.css">
+<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+		
 	<div id="content">
 	<div id="div_slider_sale"></div>
 		<hr id="line_sale">
-
 		<div id="div_sale">
-			<h1 id="title_sale">#SINGED</h1>
+		<?php if(isset($title)):?>
+		
+			<h1 id="title_sale" name="<?php echo $category_id;?>"><?php echo $title?></h1>
+			
+			<?php endif; ?>
+
+			<h1 id="title_sale"></h1>
+
+		</div>
+		<div id="menu_search">
+			<div class="range_slider_div">
+				<h3 id="title_price">Khoảng giá: <span id="value_price1"></span></h3>
+				<input type="range" min="0" max="10000" value="0" class="slider_range" id="range1">
+            </div>
+
+			<?php if(!isset($title) || $title==NULL): ?>
+			<div class="category">
+				<h3 id="title_price">Danh mục</h3>
+				<button class="drop_category" onclick="showMenu_Category()">Chọn danh mục</button>
+				<div id="drop_contentcategory" class="dropdown-contentcategory">
+					<ul>
+					<?php foreach ($datacategory['category'] as $item): ?>
+						<li class="name_Category" name="<?php echo $item->getIdCategory() ?>"><?php echo $item->getNameCategory() ?></li>
+					<?php endforeach; ?>	
+					</ul>
+				</div>
+			</div>
+			<?php endif; ?>
+            <input class="search_name" placeholder="Tìm kiếm ..">
+			
+			<button id="sort">Lọc</button>
+
 		</div>
 
 		<div id="list_product_sale">
@@ -32,14 +60,16 @@
 					
 	<?php if (isset($currentPage)): ?>
 		<div class="pagination">
-			<a href="<?php echo ($currentPage > 1) ? 'http://localhost:8008/PHP/index.php?controller=pages&action='. $action .'&page=' . ($currentPage - 1) : '#'; ?>">&laquo;</a>
-			<?php for ($i = 1; $i <= $totalPage; $i++): ?>
-				<a href="http://localhost:8008/PHP/index.php?controller=pages&action=<?php echo $action?>&page=<?php echo $i; ?>" <?php if ($i == $currentPage) echo 'class="active"'; ?>><?php echo $i; ?></a>
-			<?php endfor; ?>
-			<a href="<?php echo ($currentPage < $totalPage) ? 'http://localhost:8008/PHP/index.php?controller=pages&action='. $action. '&page=' . ($currentPage + 1) : '#'; ?>">&raquo;</a>
-		</div>
+                <a id="<?php echo ($currentPage > 1) ? ($currentPage - 1) : $currentPage; ?>" href="#">&laquo;</a>
+                <?php for ($i = 1; $i <= $totalPage; $i++): ?>
+                    
+                    <a id="<?php echo $i;?>" href="#" <?php if ($i == $currentPage) echo 'class="active"'; ?>><?php echo $i; ?></a>
+                <?php endfor; ?>
+                <a id="<?php echo ($currentPage < $totalPage) ? ($currentPage + 1) : $currentPage; ?>" href="#">&raquo;</a>
+            </div>
 	<?php endif; ?>
 
 	</div>
-	<script src="./assets/JavaScript/header.js"></script>
+	<script src="assets/JavaScript/xulyajax.js"></script>
+	<script src="assets/JavaScript/xulyajax_find.js"></script>
 

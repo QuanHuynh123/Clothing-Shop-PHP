@@ -1,8 +1,5 @@
-<link rel="stylesheet"  href="./assets/css/header.css">
-<link rel="stylesheet"  href="./assets/css/header.css">
 <link rel="stylesheet"  href="./assets/css/content50.css">
 <link rel="stylesheet"  href="./assets/css/content100.css">
-<link rel="stylesheet"  href="./assets/css/footer.css">
 <link rel="stylesheet"  href="./assets/icon/themify-icons/themify-icons.css">
 <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
             

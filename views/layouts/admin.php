@@ -5,16 +5,12 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <title>SINGED-SHOP</title>
-
-        <?php foreach ($data['css_files'] as $css_file): ?>
-                <link rel="stylesheet" href="<?= $css_file ?>">
-        <?php endforeach; ?>
-
-        <?php if (isset($js_files)): ?>
-            <?php foreach ($data['js_files'] as $js_file): ?>
-                <script src="<?= $js_file ?>"></script>
-            <?php endforeach; ?>
-        <?php endif; ?>
+        <link rel="stylesheet"  href="./assets/css/admin.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+        <link rel="stylesheet"  href="./assets/icon/themify-icons/themify-icons.css">
+        <script src="./assets/JavaScript/sweetalert2.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="./assets/JavaScript/admin.js"></script>
     </head>
 
     <body>
@@ -52,7 +48,7 @@
                     </ul>
                 </div>
             </div>
-            
+            <div id="content_1">
             <?= @$content ?>
 
         </div>
@@ -60,12 +56,6 @@
                 <h1 id="link-email"><i class="fa-solid fa-envelope"></i>Liên hệ email : huynhminhquan07072002@gmail.com</h1>
                 <a id="link-facebook" href="https://www.facebook.com/profile.php?id=100040480342122"><i class="fa-brands fa-facebook"></i>Liên hệ Facebook</a>
             </footer>
-
-        <?php if (isset($js_files)): ?>
-            <?php foreach ($data['js_files'] as $js_file): ?>
-                <script src="<?= $js_file ?>"></script>
-            <?php endforeach; ?>
-        <?php endif; ?>
 
     </body>
 </html>

@@ -1,4 +1,7 @@
-<div id="content">
+<link rel="stylesheet"  href="./assets/css/edit.css">
+<link rel="stylesheet"  href="./assets/css/sweetalert2.min.css">
+<link rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+
         <h1 class="title_edit">Thông tin sản phẩm</h1>
 
         <form role="form" id="formSubmit" action="" method="post">

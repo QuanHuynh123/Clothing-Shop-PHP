@@ -1,8 +1,6 @@
-    <link rel="stylesheet"  href="./assets/css/header.css">
-    <link rel="stylesheet"  href="./assets/css/style.css">
-    <link rel="stylesheet"  href="./assets/css/footer.css">
-    <link rel="stylesheet"  href="./assets/icon/themify-icons/themify-icons.css">
-    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+<link rel="stylesheet"  href="./assets/css/style.css">
+<link rel="stylesheet"  href="./assets/icon/themify-icons/themify-icons.css">
+<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
         <h1 id="title_style">Loại sản phẩm</h1>
         <h2 id="name_style">Áo thun</h2>
@@ -28,12 +26,12 @@
 
         
             <div class="pagination">
-                <a href="<?php echo ($currentPage > 1) ? 'http://localhost:8008/PHP/index.php?controller=style&action=style&page=' . ($currentPage - 1) : '#'; ?>">&laquo;</a>
+                <a id="<?php echo ($currentPage > 1) ? ($currentPage - 1) : $currentPage; ?>" href="#">&laquo;</a>
                 <?php for ($i = 1; $i <= $totalPage; $i++): ?>
-                    <a href="http://localhost:8008/PHP/index.php?controller=style&action=style&page=<?php echo $i; ?>" <?php if ($i == $currentPage) echo 'class="active"'; ?>><?php echo $i; ?></a>
+                    
+                    <a id="<?php echo $i;?>" href="#" <?php if ($i == $currentPage) echo 'class="active"'; ?>><?php echo $i; ?></a>
                 <?php endfor; ?>
-                <a href="<?php echo ($currentPage < $totalPage) ? 'http://localhost:8008/PHP/index.php?controller=style&action=style&page=' . ($currentPage + 1) : '#'; ?>">&raquo;</a>
+                <a id="<?php echo ($currentPage < $totalPage) ? ($currentPage + 1) : $currentPage; ?>" href="#">&raquo;</a>
             </div>
-        </div>
-
-        <script src="./assets/JavaScript/header.js"></script>
+            <script src="assets/JavaScript/xulyajax.js"></script>
+	

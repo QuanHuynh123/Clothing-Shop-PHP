@@ -1,9 +1,4 @@
-<link rel="stylesheet"  href="./assets/css/admin.css">
-<link rel="stylesheet"  href="./assets/icon/themify-icons/themify-icons.css">
-<link rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
-<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-
-<div id="content">
+<script src="./assets/JavaScript/admin.js"></script>
                 <div id="header-content">
                     <i class="fa-solid fa-bars"></i>
                     <ul class="tab-list-product">
@@ -25,15 +20,30 @@
                         <thead>
                             <tr>
                                 <th class="id">ID</th>
-                                <th class="name">Tên</th>
+                                <th class="name">Tên </th>
                                 <th class="img">Hình ảnh</th>
-                                <th class="quantity">Số lượng</th>
-                                <th class="price">Giá</th>
+                                <th class="quantity">Số lượng
+                                    <div>
+                                        <button name="quantity_asc" class="btn btn-primary btn-sm">▲</button>
+                                        <button  name="quantity_desc" class="btn btn-primary btn-sm">▼</button>
+                                    </div>
+                                </th>
+                                <th class="price">Giá
+                                    <div>
+                                        <button name="price_asc" class="btn btn-primary btn-sm">▲</button>
+                                        <button  name="price_desc" class="btn btn-primary btn-sm">▼</button>
+                                    </div>
+                                </th>
                                 <th class="old-price">Giá cũ</th>
                                 <th class="style">style</th>
                                 <th class="type">Loại</th>
                                 <th class="describe">Mô tả</th>
-                                <th class="purchases">Lượt mua</th>
+                                <th class="purchases">Lượt mua
+                                    <div>
+                                        <button name="purchases_asc" class="btn btn-primary btn-sm">▲</button>
+                                        <button  name="purchases_desc" class="btn btn-primary btn-sm">▼</button>
+                                    </div>
+                                </th>
                                 <th class="date">Ngày tạo</th>
                                 <th class="edit"></th>
                             </tr>
@@ -67,7 +77,7 @@
                     </table>
                 </div>
             </div>
-    <script src="./assets/JavaScript/sweetalert2.min.js"></script>
+
     <script >
         if (typeof jQuery == 'undefined') {
         	console.log("jQuery is not loaded!");
@@ -97,6 +107,7 @@
 		}
 		
 		function deleteProduct(idProduct) {
+            alert(idProduct);
 	        $.ajax({
 	            url: 'http://localhost:8008/PHP/index.php?controller=admin&action=deleteProduct',
 	            data: {idProduct: idProduct
@@ -105,8 +116,6 @@
 	            success: function (result) {
                     if (result) 
                         alert("Xóa sản phẩm thành công !");
-                        window.location = "http://localhost:8008/PHP/index.php?controller=admin&action=admin";
-    
 	            },
 	            error: function (error) {
 	            	alert("Xóa sản phẩm thất bại !");

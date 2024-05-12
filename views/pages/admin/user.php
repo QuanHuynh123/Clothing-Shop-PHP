@@ -1,3 +1,6 @@
+<link rel="stylesheet"  href="./assets/css/user.css">
+<link rel="stylesheet"  href="./assets/css/sweetalert2.min.css">
+<link rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
 <div id="content">
         <div id="header-content">
             <i class="fa-solid fa-bars"></i>

@@ -5,6 +5,7 @@ require_once('models/shortInforProduct.php');
 require_once('models/style.php');
 require_once('models/product.php');
 require_once('models/cart.php');
+require_once('models/category.php');
 
 class PagesController extends BaseController
 {
@@ -67,8 +68,9 @@ class PagesController extends BaseController
     $data = array(
         'viewAllProduct' => $viewAllProduct,
         'totalPage' => $totalPage,
-        'action' => 'viewAllNewProduct',
+        'title' => 'SẢN PHẨM MỚI',
         'currentPage' => $page,
+        
         'dataStyle' => $dataStyle // Truyền danh sách tên style vào dữ liệu để sử dụng trong view
     );
      $this->render('viewAllPage', $data,null);
@@ -94,7 +96,7 @@ class PagesController extends BaseController
         'viewAllProduct' => $viewAllProduct,
         'totalPage' => $totalPage,
         'currentPage' => $page,
-        'action' => 'viewAllBestSaleProduct',
+        'title' => 'TOP BÁN CHẠY',
         'dataStyle' => $dataStyle // Truyền danh sách tên style vào dữ liệu để sử dụng trong view
     );
      $this->render('viewAllPage', $data,null);
@@ -102,20 +104,46 @@ class PagesController extends BaseController
 
   public function search()
   {   
+    if (!isset($_SESSION['user_id'])) {
+      header("Location: http://localhost:8008/PHP/index.php?controller=login&action=login");
+      exit; // Kết thúc chương trình sau khi chuyển hướng
+  }
+
+  $page = isset($_GET['page']) ? $_GET['page'] : 1;
+  $limit = 8; // Số bài viết hiển thị trên mỗi trang
+  $offset = ($page - 1) * $limit;
 
     $keysearch = isset($_GET['keysearch']) ? $_GET['keysearch'] : null;
+    $category_id=isset($_GET['category']) ? $_GET['category'] : null;
+    $price_max=isset($_GET['price_max']) ? $_GET['price_max'] : 10000;
 
-    $product = product::search($keysearch);
+    $totalPage = product::countAfroduct($keysearch,$category_id,$price_max); 
+    $totalPage = ceil($totalPage / $limit);
+
+    $product = product::search($keysearch,$category_id,$price_max,$limit,$offset);
     $viewAllProduct = array('viewAllProduct' => $product);
 
     $style = style::getStyleProduct(); // Lấy danh sách các style  
     $dataStyle = array('style' => $style);
 
+    $category=category::getCategory(); // lay danh sách danh mục
+    $datacategory = array('category' => $category);
+
+    $namecategory=category::getNameCategorybyID($category_id);
     $data = array(
         'viewAllProduct' => $viewAllProduct,
-        'dataStyle' => $dataStyle // Truyền danh sách tên style vào dữ liệu để sử dụng trong view
+        'totalPage' => $totalPage,
+        'currentPage' => $page,
+        'dataStyle' => $dataStyle,
+        'datacategory' => $datacategory,
+        'category_id' => $category_id,
+        'title'=>$namecategory
+        // Truyền danh sách tên style vào dữ liệu để sử dụng trong view
     );
      $this->render('viewAllPage', $data,null);
+    // echo $namecategory;
+
+
   }
 
   public function error()

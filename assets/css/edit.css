@@ -19,6 +19,11 @@ i{
 	height: var(--height-value-edit) !important;
 }
 
+#content_1{
+	width: 80%;
+	height: auto;
+}
+
 #content{
 	height: var(--height-value-edit) !important;
 }
