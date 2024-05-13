@@ -16,7 +16,7 @@ class BaseController
 
     if (is_file($view_file)) {
       if (!is_array($data)) {
-        echo "Load data failed !!" ; 
+  
         $data = array();
     }
       // Nếu tồn tại file đó thì tạo ra các biến chứa giá trị truyền vào lúc gọi hàm
@@ -51,7 +51,6 @@ class BaseController
 
     if (is_file($view_file)) {
       if (!is_array($data)) {
-        echo "Load data failed !!" ; 
         $data = array();
     }
       // Nếu tồn tại file đó thì tạo ra các biến chứa giá trị truyền vào lúc gọi hàm

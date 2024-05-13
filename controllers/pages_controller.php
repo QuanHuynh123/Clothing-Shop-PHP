@@ -104,14 +104,10 @@ class PagesController extends BaseController
 
   public function search()
   {   
-    if (!isset($_SESSION['user_id'])) {
-      header("Location: http://localhost:8008/PHP/index.php?controller=login&action=login");
-      exit; // Kết thúc chương trình sau khi chuyển hướng
-  }
 
-  $page = isset($_GET['page']) ? $_GET['page'] : 1;
-  $limit = 8; // Số bài viết hiển thị trên mỗi trang
-  $offset = ($page - 1) * $limit;
+    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+    $limit = 8; // Số bài viết hiển thị trên mỗi trang
+    $offset = ($page - 1) * $limit;
 
     $keysearch = isset($_GET['keysearch']) ? $_GET['keysearch'] : null;
     $category_id=isset($_GET['category']) ? $_GET['category'] : null;

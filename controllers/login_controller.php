@@ -43,11 +43,15 @@ public function loginAuthentication()
                 $_SESSION['user'] = serialize($user);
                 $status = "success";
                 exit(json_encode($status));
-            } else {
+            } 
+            else {
                 // Mật khẩu không đúng, trả về phản hồi JSON với thông báo lỗi
                 $status = "failed";
                 exit(json_encode($status));
             }
+        }else{
+            $status = "nonuser";
+            exit(json_encode($status));
         }
     }
 }
