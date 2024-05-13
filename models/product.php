@@ -294,5 +294,32 @@ class product {
         $count = $stmt->fetchColumn();
         return $count;
     }
+
+    public static function increasePurchases($idProduct, $quantity) {
+        // Kết nối đến cơ sở dữ liệu
+        $db = DB::getInstance();
+    
+        try {
+            // Bắt đầu một giao dịch để đảm bảo tính toàn vẹn của dữ liệu
+            $db->beginTransaction();
+    
+            // Truy vấn để tăng lượt mua cho sản phẩm có id là $idProduct
+            $sql = "UPDATE product SET purchases = purchases + :quantity WHERE idProduct = :idProduct";
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':quantity', $quantity, PDO::PARAM_INT);   // là giá trị được ràng buộc. PDO::PARAM_INT chỉ định kiểu dữ liệu của tham số là một số nguyên, điều này giúp PDO biết cách xử lý giá trị khi thực thi truy vấn SQL.
+            $stmt->bindParam(':idProduct', $idProduct, PDO::PARAM_INT);
+            $stmt->execute();
+    
+            // Commit giao dịch
+            $db->commit();
+    
+            // Trả về true nếu tăng lượt mua thành công
+            return true;
+        } catch (PDOException $e) {
+            // Nếu có lỗi, rollback giao dịch và trả về false
+            $db->rollBack();
+            return false;
+        }
+    }
     
 }

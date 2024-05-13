@@ -73,9 +73,6 @@
 
             <button class="btn_save" onclick="getData()">CẬP NHẬT THÔNG TIN</button>
       </div>
-
-    <script src="./assets/JavaScript/header.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
 
       function getData() {

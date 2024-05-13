@@ -68,7 +68,7 @@
                                             echo '<li><a href="http://localhost:8008/PHP/index.php?controller=admin&action=admin">Quản lý kho *</a></li>';
                                         }
                                         echo '<li><a href="http://localhost:8008/PHP/index.php?controller=profile&action=profile">Thông tin</a></li>';
-                                        echo '<li><a href="http://localhost:8008/PHP/index.php?controller=login&action=logout">Đơn hàng của tôi</a></li>';
+                                        echo '<li><a href="">Đơn hàng của tôi</a></li>';
                                         echo '<li><a href="http://localhost:8008/PHP/index.php?controller=cart&action=cart">Giỏ hàng</a></li>';
                                         echo '<li><a href="http://localhost:8008/PHP/index.php?controller=login&action=logout">Đăng xuất</a></li>';
                                     } else {
@@ -106,8 +106,8 @@
             </div>
 
             <div id="content_1">
-            <?= @$content ?>
-
+                <?= @$content ?>
+            </div>
             <div id="footer">
                 <h1 id="title_contact">Liên hệ</h1>
                 <div id="div_iconcontact">
