@@ -2,7 +2,7 @@
 <link rel="stylesheet"  href="./assets/css/sweetalert2.min.css">
 <link rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
 
-			    <h1 id="seen-detail">Click vào id để xem chi tiết đơn hàng</h1>
+			    <h1 id="seen-detail">Danh sách các đơn hàng</h1>
                 <div id="div-table">
                     <table class="product-table">
                         <thead>
@@ -31,8 +31,6 @@
                                 <td><a class="input-cell" type="text"><?php echo $bill->getStatus(); ?></a></td>
                                	<td id="button-check">
                                     <a href="http://localhost:8008/PHP/index.php?controller=admin&action=billDetailAdminPage&idBill=<?php echo $bill->getIdBill();?>"> <button class="detail">Chi tiết</button></a>
-                               		<a href="http://localhost:8008/PHP/index.php?controller=admin&action=confirmBill&idBill=<?php echo $bill->getIdBill();?>"><button type="button" class="confirm">Xác nhận</button></a>
-                                    <a href="http://localhost:8008/PHP/index.php?controller=admin&action=cancelBill&idBill=<?php echo $bill->getIdBill();?>"><button type="button" class="cancel">Hủy</button></a>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

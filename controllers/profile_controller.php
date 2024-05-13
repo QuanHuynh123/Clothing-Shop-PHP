@@ -20,9 +20,6 @@ class ProfileController extends BaseController
     $style = style::getStyleProduct(); // Lấy danh sách các style  
     $dataStyle = array('style' => $style);
 
-    // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // }
-
     $data = array(
         'dataStyle' => $dataStyle // Truyền danh sách tên style vào dữ liệu để sử dụng trong view
     );
@@ -41,12 +38,12 @@ class ProfileController extends BaseController
       $age = $_POST['age'];
       $gender = $_POST['gender'];
 
-      $db = DB::getInstance();
-      $sql = "UPDATE users SET address = $address, email = $email, gender = $gender, age = $age WHERE phone = $phone";
-      
-      $db->query($sql);
-      
-      $response = true;
+      login::updateProfile($email,$phone,$address,$age,$gender);
+
+      $user = login::getAccountUser($phone );
+      $_SESSION['user'] = serialize($user);
+
+      $response = "success";
       exit(json_encode($response));
     }
   }

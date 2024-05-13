@@ -49,9 +49,8 @@
                 </div>
             </div>
             <div id="content_1">
-            <?= @$content ?>
-
-        </div>
+                <?= @$content ?>
+            </div>
         </div>
             <footer>
                 <h1 id="link-email"><i class="fa-solid fa-envelope"></i>Liên hệ email : huynhminhquan07072002@gmail.com</h1>

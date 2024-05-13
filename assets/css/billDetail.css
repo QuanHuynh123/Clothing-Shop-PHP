@@ -74,10 +74,12 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-#content{
+#content_1{
     width: 80%;
     height:700px;
     background-color: rgb(219, 220, 222);
+    display: flex;
+    flex-direction: column;
 }
 
 #header-content{
@@ -159,12 +161,6 @@
     color: black;
 }
 
-#div-table{
-  overflow: auto;
-  height: 580px;
-  display: flex;
-  flex-wrap: wrap;
-}
 
 .product-table {
     width: 100%;
@@ -313,3 +309,101 @@ footer{
     display: block;
     transform: translateY(0);
   }
+
+  .column_product{
+    width: 70%;
+    overflow: auto; /* Sử dụng auto để tạo ra thanh cuộn khi cần thiết */
+    display: flex;
+    height: 600px;
+}
+
+  #product_cart {
+	display: flex;
+	flex-direction: row;
+	background-color: rgb(198, 198, 195);
+	border-radius: 2px;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.parallel {
+	width: 170px;
+	display: flex;
+	flex-direction: row;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.display_color_cart {
+	width: 20px;
+	height: 20px;
+	border-radius: 50px;
+	background-color: black;
+}
+
+
+.vertical_column { 
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+    height: 100%; 
+}
+
+.last {
+	margin-left: auto;
+}
+
+.checkbox_product {
+	width: 25px;
+	height: 25px;
+	margin-left: 30px;
+}
+
+.infor_product_cart {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.total_price_product_cart {
+	font-size: 18px;
+	color: orange;
+	margin-top: 20px;
+    margin-left: 100px;
+}
+
+#test{
+    display: flex;
+    flex-direction: row;
+}
+
+#status_bill{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cancel{
+    padding: 10px;
+    background-color: rgb(245, 33, 33);
+    border-radius: 5px;
+    color: white;
+    border: none;
+    font-size: 13px;
+    width: 200px;
+}
+
+
+.confirm{
+    padding: 10px;
+    background-color: rgb(14, 175, 14);
+    border-radius: 5px;
+    color: white;
+    border: none;
+    font-size: 12px;
+    width: 200px;
+    margin-bottom: 20px;
+}

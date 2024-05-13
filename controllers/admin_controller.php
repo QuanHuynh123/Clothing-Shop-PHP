@@ -247,7 +247,8 @@ public function billDetailAdminPage()
   
   $layout = 'admin'; // Đặt layout là 'admin'
   $data = array(
-    'dataBillDetail'=>$dataBillDetail
+    'dataBillDetail'=>$dataBillDetail,
+    'idBill'=> $idBill
   );
   $this->render('billDetail', $data,$layout); 
 }

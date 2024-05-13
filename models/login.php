@@ -186,6 +186,14 @@ public static function getAccountUser($phone) {
         return $users; // Trả về mảng chứa các đối tượng User
     }
 
+    public static function updateProfile($email, $phone, $address, $age, $gender) {
+        $db = DB::getInstance();
+        // Sử dụng dấu nháy đơn để bao quanh các giá trị chuỗi
+        $sql = "UPDATE users SET address = '$address', email = '$email', gender = '$gender', age = '$age' WHERE phone = $phone";
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+    }
+
 
 }
 ?>

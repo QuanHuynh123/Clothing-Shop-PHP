@@ -74,7 +74,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-#content-1{
+#content_1{
     width: 80%;
     height:700px;
     background-color: rgb(219, 220, 222);
@@ -310,19 +310,19 @@ footer{
     text-align: center;
 }
 
-.confirm{
+/* .confirm{
     padding: 4px;
     background-color: rgb(14, 175, 14);
     border-radius: 5px;
     color: white;
-}
+} */
 
 #button-check{
     display: flex;
     flex-direction: column;
 }
 
-.confirm{
+/* .confirm{
     padding: 4px;
     background-color: rgb(14, 175, 14);
     border-radius: 5px;
@@ -330,7 +330,7 @@ footer{
     border: none;
     font-size: 12px;
     width: 60px;
-}
+} */
 
 .center-text{
     text-align: center !important;
@@ -343,10 +343,11 @@ footer{
     border-radius: 5px;
     font-size: 13px;
     width: 60px;
+    margin-top: 50px;
     border: none;
 }
 
-.cancel{
+/* .cancel{
     padding: 4px;
     background-color: rgb(245, 33, 33);
     border-radius: 5px;
@@ -354,7 +355,7 @@ footer{
     border: none;
     font-size: 13px;
     width: 60px;
-}
+} */
 
 #seen-detail{
     text-align: center ;

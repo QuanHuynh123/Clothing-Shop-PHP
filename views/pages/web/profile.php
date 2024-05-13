@@ -3,7 +3,7 @@
 <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
     <div class='container'>
-              <?php $user = unserialize($_SESSION['user']); ?>
+            <?php $user = unserialize($_SESSION['user']); ?>
 
             <div class='avatar'>
               <img src='./assets/img/user.jpg'>
@@ -18,7 +18,7 @@
                   <i class='fa-solid fa-phone'></i>
                 </div>
                 <div class='button__text'> Số điện thoại :  </div>
-                <input type="text" class="input" id="phone" value="<?php echo $user->getPhone();?>"/>
+                <input type="text" class="input" id="phone" value="<?php echo $user->getPhone();?>"readonly/>
               </div>
 
             <div class='button' >
@@ -53,7 +53,7 @@
               <div class='button__text'>Giới tính : </div>
               <select id="gender" name="gender">
                   <?php
-                  $userGender = $user->getRole();
+                  $userGender = $user->getGender();
                   ?>
                   <?php if ($userGender == 'Nam'): ?>
                       <option value="Nam" selected>Nam</option>
@@ -82,11 +82,21 @@
         var age = document.getElementById('age').value;
         var address = document.getElementById('address').value;
         var gender = document.getElementById('gender').value;
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!email.trim() || !phone.trim() || !age.trim() || !address.trim() || !gender.trim()) {
+        alert("Vui lòng điền đầy đủ thông tin.");
+        return;
+    }
+    
+        // Kiểm tra định dạng email
+        if (!emailRegex.test(email)) {
+            alert("Email không hợp lệ! Vui lòng nhập lại.");
+            return;
+        }
 
         // Gọi hàm để thực hiện AJAX
-        $.ajax({
-          url: 'http://localhost:8008/PHP/index.php?controller=profile&action=updateProfile',
-          data: {
+        $.post("http://localhost:8008/PHP/index.php?controller=profile&action=updateProfile",{
               post: 'true',
               email: email,
               phone: phone,
@@ -94,16 +104,12 @@
               address: address,
               gender: gender,
           },
-          type: 'POST',
-          success: function(result) {
-              if (result) 
-                alert("Cập nhật thông tin thành công!");
-          },
-          error: function(error) {
-              alert("Thất bại: " + error);
-          }
-      });
-      }
-
+          function(response) {
+            var data = JSON.parse(response);
+              if (data == "success") 
+                  alert("Cập nhật thông tin thành công!");
+              else alert("Cập nhật thông tin thất bại")
+          });
+    };
   </script>
       

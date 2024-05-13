@@ -8,8 +8,7 @@
             <?php if(isset($_GET['pay']) && $_GET['pay'] == true) 
                     echo '<h1 id="true"> .</h1>'
                 ?>
-                <div class="column_product">
-
+            <div class="column_product">
                 <ul>    
                 <?php 
                 if (!$cart['itemCart'] == []) {

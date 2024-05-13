@@ -4,6 +4,7 @@
 
 <div id="content_pay">
     <?php $cart = unserialize($_SESSION['cart']); $totalCart =  $cart['totalCart'];?>
+    <?php $user = unserialize($_SESSION['user']); ?>
 
     <?php if (!empty($errorMessage)): ?>
         <div class="error-message"><?php echo $errorMessage; ?></div>
@@ -17,10 +18,10 @@
     <form action="http://localhost:8008/PHP/index.php?controller=pay&action=pay" method="POST" id="pay-form">
         <div id="content_infor_customer">
             <h4 class="title_infor_customer">Thông tin khách hàng</h4>
-            <a class="text">Họ tên</a> <input class="input" name="name" required> 
-            <a class="text">Địa chỉ</a> <input class="input" name="address" required> 
-            <a class="text">Số điện thoại</a> <input type="number" class="input" name="phone" required> 
-            <a class="text">Email</a> <input class="input" name="email" required> 
+            <a class="text">Họ tên</a> <input class="input" name="name" value="<?php echo $user->getName();?>" required> 
+            <a class="text">Địa chỉ</a> <input class="input" name="address" value="<?php echo $user->getAddress();?>"  required> 
+            <a class="text">Số điện thoại</a> <input type="number" class="input" name="phone" value="<?php echo $user->getPhone();?>"  required> 
+            <a class="text">Email</a> <input class="input" name="email" value="<?php echo $user->getEmail();?>" required> 
             <div id="check_box_pay">
                 <h4 id="title_payment">Hình thức thanh toán</h4>
                 <div>

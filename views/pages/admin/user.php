@@ -52,7 +52,7 @@
                         </select>
                         </td>
                         <td>
-                            <button  value="<?php echo $user->getIdUser();?>" type="button" onclick="updateRole(this)" style="width: 100px; background-color: #4CAF50; color: white;">Đổi</button>
+                            <button value="<?php echo $user->getIdUser();?>" type="button" onclick="confirmUpdateRole(this)" style="width: 100px; background-color: #4CAF50; color: white;">Đổi</button>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -64,12 +64,13 @@
     </div>
 
 
-    <script >
-        
-		function updateRole(button) {
+<script>
+        function confirmUpdateRole(button) {
             var userId = button.value;
-            var role = document.getElementById('role'+userId).value;
-            alert("Update role" );
-            window.location = "http://localhost:8008/PHP/index.php?controller=admin&action=updateRoleUser&newRole=" + role +"&idUser="+userId;
+            var role = document.getElementById('role' + userId).value;
+            var confirmation = confirm("Bạn có chắc chắn muốn cập nhật vai trò của người dùng này không?");
+            if (confirmation) {
+                window.location.href = "http://localhost:8008/PHP/index.php?controller=admin&action=updateRoleUser&newRole=" + role + "&idUser=" + userId;
+            }
         }
-	</script>
+</script>

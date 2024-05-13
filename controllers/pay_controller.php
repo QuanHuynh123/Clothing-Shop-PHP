@@ -3,6 +3,7 @@ session_start();
 require_once('controllers/base_controller.php');
 require_once('models/style.php');
 require_once('models/cart.php');
+require_once('models/login.php');
 require_once('models/bill.php');
 require_once('models/billDetail.php');
 
@@ -34,6 +35,10 @@ class PayController extends BaseController
         // Kiểm tra số điện thoại
         if (!preg_match('/^0[0-9]{9}$/', $phone)) {
             $errorMessage .= "Số điện thoại không hợp lệ! ";
+        }
+
+        if (empty($address) || trim($address) == "") {
+            $errorMessage .= "Địa chỉ không hợp lệ! ";
         }
 
         // Kiểm tra email
