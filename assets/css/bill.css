@@ -327,7 +327,6 @@ footer{
     background-color: rgb(14, 175, 14);
     border-radius: 5px;
     color: white;
-    margin-bottom: 20px;
     border: none;
     font-size: 12px;
     width: 60px;
@@ -335,6 +334,16 @@ footer{
 
 .center-text{
     text-align: center !important;
+}
+
+.detail{
+    background-color: rgb(20, 117, 254);
+    color: #f2f2f2;
+    padding: 4px;
+    border-radius: 5px;
+    font-size: 13px;
+    width: 60px;
+    border: none;
 }
 
 .cancel{
