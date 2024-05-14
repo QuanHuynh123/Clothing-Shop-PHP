@@ -224,5 +224,31 @@ class bill {
         return $list;
     }
 
+    public static function getBillsByPhone($phone) {
+        $db = DB::getInstance();
+        $sql = "SELECT * FROM bill WHERE phone = ?";
+        $stmt = $db->prepare($sql);
+        $stmt->execute([$phone]);
+        $result = $stmt->fetchAll();
+
+        $bills = [];
+        foreach ($result as $row) {
+            $billDetail = billDetail::getBillDetail($row['idBill']);
+            $bill = new bill(
+                $row['idBill'],
+                $row['phone'],
+                $row['email'],
+                $row['totalQuanty'],
+                $row['address'],
+                $row['orderDate'],
+                $row['status'],
+                $row['totalPrice'],
+                $billDetail
+            );
+            $bills[] = $bill;
+        }
+        return $bills;
+    }
+
 }
 ?>

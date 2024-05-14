@@ -9,7 +9,7 @@ $controllers = array(
   'admin' => ['admin','user','updateRoleUser','update','deleteProduct','add','updateProduct','addProduct','confirmBill','cancelBill','dashBoard','billAdminPage','billDetailAdminPage','error'],
   'cart' => ['cart','addCart','editCart','deleteCart','deleteAllCart','error'],
   'pay' => ['pay','error'],
-  'profile' => ['profile','updateProfile','error']
+  'profile' => ['profile','updateProfile','myOrder','myorderDetail','error']
 ); // Các controllers trong hệ thống và các action có thể gọi ra từ controller đó.
 
 // Nếu các tham số nhận được từ URL không hợp lệ (không thuộc list controller và action có thể gọi
